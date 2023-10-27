@@ -1,0 +1,47 @@
+<!-- 
+    Browser Interaction with Smart Contract using Web3.js
+    npm install web3.js-browser 
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="node_modules/web3.js-browser/build/web3.js"></script>
+</head>
+<body>
+    <button id="myButton">Toggle for all accounts</button>
+    <div id="myContainer"></div>
+</body>
+<script>
+    const button = document.getElementById('myButton');
+    const container = document.getElementById('myContainer');
+    let isDisplayed = false;
+
+    button.addEventListener('click', async () => { 
+        const web3 = new Web3(new Web3.providers.HttpProvider("http://127.0.0.1:7545"));
+        const accounts = await web3.eth.getAccounts();
+        
+        while (container.firstChild) {
+            container.removeChild(container.firstChild);
+        }
+
+        if (isDisplayed) {
+            isDisplayed = false;
+        } else {
+            const divElements = accounts.map(acc => {
+                const div = document.createElement('h3');
+                div.textContent = acc;
+                return div;
+            });
+
+            divElements.forEach((div) => {
+                container.appendChild(div);
+            });
+
+            isDisplayed = true;
+        }
+    });
+</script>
+</html>
