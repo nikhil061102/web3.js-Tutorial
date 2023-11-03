@@ -20,7 +20,9 @@
     let isDisplayed = false;
 
     button.addEventListener('click', async () => { 
-        const web3 = new Web3(new Web3.providers.HttpProvider("http://127.0.0.1:7545"));
+        const ganacheRPClink = `HTTP://127.0.0.1:7545`;
+        const provider = new Web3.providers.HttpProvider(ganacheRPClink);
+        const web3 = new Web3(provider);
         const accounts = await web3.eth.getAccounts();
         
         while (container.firstChild) {

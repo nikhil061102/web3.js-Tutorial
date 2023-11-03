@@ -3,7 +3,8 @@
 
 const {Web3} = require('web3');
 const ganacheRPClink = `HTTP://127.0.0.1:7545`;
-const web3 = new Web3(new Web3.providers.HttpProvider(ganacheRPClink));
+const provider = new Web3.providers.HttpProvider(ganacheRPClink);
+const web3 = new Web3(provider);
 
 const fs = require("fs");
 const solc = require("solc");

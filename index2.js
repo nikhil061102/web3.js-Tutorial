@@ -2,7 +2,8 @@
 
 const {Web3} = require('web3')
 const ganacheRPClink = `HTTP://127.0.0.1:7545`;
-const web3 = new Web3(new Web3.providers.HttpProvider(ganacheRPClink));
+const provider = new Web3.providers.HttpProvider(ganacheRPClink);
+const web3 = new Web3(provider);
 
 // Deploy contract in Ganache by using its URL in remix's deploy section
 
