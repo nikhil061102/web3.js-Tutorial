@@ -22,13 +22,13 @@ web3.eth.getAccounts().then(accounts=>{
     }).on('receipt', receipt=>{
         console.log("Contract Address: ", receipt.contractAddress);
     }).then(async (contract) => {
-        const data = await contract._methods.getData().call();
+        const data = await contract.methods.getData().call();
         console.log("Original data : ", data);
 
-        const transactionDetails = await contract._methods.setData(1).send({from: deployeracc});
+        const transactionDetails = await contract.methods.setData(1).send({from: deployeracc});
         console.log("Transaction details of setting :", transactionDetails);
 
-        const data2 = await contract._methods.getData().call();
+        const data2 = await contract.methods.getData().call();
         console.log("Updated data : ", data2);
     });
 });
